@@ -16,11 +16,25 @@
       margin: auto;
       padding: 20px;
     }
+    .search-box {
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
     .download-box {
       background: #222;
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+    .download-box:hover {
+      transform: scale(1.02);
     }
     a.button {
       display: inline-block;
@@ -36,31 +50,61 @@
       border-radius: 8px;
       margin-bottom: 10px;
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>LIST OF GAMES</h1>
+    <h1>Download Center</h1>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search files...">
+    </div>
 
     <div class="download-box">
       <h2>Black Souls</h2>
-      <!-- Add image here -->
       <img src="https://i.imgur.com/gDTKDyK.png" alt="File 1 Image">
       <p>Long, long ago, there existed a kingdom shrouded in dense mist: the Lost Empire. This mist twisted humans into terrifying beasts, plunging the world into despair. War raged endlessly. Heroes rose, seeking fame and glory. It is in this place you awaken—a nameless undead.</p>
       <p>
-        Platform: Pc/Android(Joiplay)
-      </p>
-      <a href="https://www.mediafire.com/file/j9e18vnbcdzbo2d/BLACK_SOULS.rar/file" class="button" target="_blank">Download</a>
+      Platform: Pc/Android(Joiplay)</p>
+      <a href="YOUR_DOWNLOAD_LINK_1" class="button" target="_blank">Download</a>
     </div>
 
     <div class="download-box">
-      <h2>Black Souls II</h2>
-      <!-- Add image here -->
+      <h2>My File 2</h2>
       <img src="YOUR_IMAGE_LINK_2" alt="File 2 Image">
-      <p>Coming Soon</p>
+      <p>Another file description.</p>
       <a href="YOUR_DOWNLOAD_LINK_2" class="button" target="_blank">Download</a>
     </div>
 
+    <div class="download-box">
+      <h2>Sample PDF</h2>
+      <img src="YOUR_IMAGE_LINK_3" alt="Sample PDF">
+      <p>PDF file example.</p>
+      <a href="YOUR_DOWNLOAD_LINK_3" class="button" target="_blank">Download</a>
+    </div>
   </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const downloadBoxes = document.querySelectorAll('.download-box');
+
+    searchInput.addEventListener('keyup', () => {
+      const query = searchInput.value.toLowerCase();
+
+      downloadBoxes.forEach(box => {
+        const title = box.querySelector('h2').textContent.toLowerCase();
+        const desc = box.querySelector('p').textContent.toLowerCase();
+        if(title.includes(query) || desc.includes(query)){
+          box.classList.remove('hidden');
+        } else {
+          box.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
