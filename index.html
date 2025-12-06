@@ -16,6 +16,8 @@
       margin: auto;
       padding: 20px;
     }
+
+    /* Search Box */
     .search-box {
       margin-bottom: 20px;
     }
@@ -29,6 +31,8 @@
       background: #fff url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat right 10px center;
       background-size: 20px;
     }
+
+    /* Download Boxes */
     .download-box {
       background: #222;
       padding: 20px;
@@ -56,6 +60,24 @@
     .hidden {
       display: none;
     }
+
+    /* Pagination */
+    #pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #pagination button {
+      margin: 5px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      background: #555;
+      color: #fff;
+    }
+    #pagination button:hover {
+      background: #0b7dda;
+    }
   </style>
 </head>
 <body>
@@ -67,12 +89,12 @@
       <input type="text" id="searchInput" placeholder="Search files...">
     </div>
 
+    <!-- Download Boxes -->
     <div class="download-box">
       <h2>Black Souls</h2>
       <img src="https://i.imgur.com/VXA5wzc.jpeg" alt="File 1 Image">
       <p>Long, long ago, there existed a kingdom shrouded in dense mist: the Lost Empire. This mist twisted humans into terrifying beasts, plunging the world into despair. War raged endlessly. Heroes rose, seeking fame and glory. It is in this place you awaken—a nameless undead.</p>
-      <p>
-      Platform: Pc/Android(Joiplay)</p>
+      <p>Platform: Pc/Android(Joiplay)</p>
       <a href="https://www.mediafire.com/file/j9e18vnbcdzbo2d/BLACK_SOULS.rar/file" class="button" target="_blank">Download</a>
     </div>
 
@@ -80,9 +102,7 @@
       <h2>Black Souls II</h2>
       <img src="https://i.imgur.com/MJ1sRMN.jpeg" alt="File 2 Image">
       <p>Despair. Fear, Madness, once again. An original work based on "Alice in Wonderland" and "Through the Looking-Glass." Dark Fairy Tale Fantasy x Psychological Horror RPG focusing on the themes of "Exploration of a Mad World" and "Life or Death Combat against Demonbeasts".</p>
-      <p>
-        Platform: Pc/Android(Joiplay)
-      </p>
+      <p>Platform: Pc/Android(Joiplay)</p>
       <a href="https://pixeldrain.com/u/wq99NgBg" class="button" target="_blank">Download</a>
     </div>
 
@@ -92,25 +112,73 @@
       <p>PDF file example.</p>
       <a href="YOUR_DOWNLOAD_LINK_3" class="button" target="_blank">Download</a>
     </div>
+
+    <div class="download-box">
+      <h2>Game 4</h2>
+      <img src="YOUR_IMAGE_LINK_4" alt="File 4 Image">
+      <p>Description for game 4.</p>
+      <p>Platform: Pc/Android</p>
+      <a href="YOUR_DOWNLOAD_LINK_4" class="button" target="_blank">Download</a>
+    </div>
+
+    <div class="download-box">
+      <h2>Game 5</h2>
+      <img src="YOUR_IMAGE_LINK_5" alt="File 5 Image">
+      <p>Description for game 5.</p>
+      <p>Platform: Pc/Android</p>
+      <a href="YOUR_DOWNLOAD_LINK_5" class="button" target="_blank">Download</a>
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination"></div>
   </div>
 
   <script>
     const searchInput = document.getElementById('searchInput');
-    const downloadBoxes = document.querySelectorAll('.download-box');
+    const downloadBoxes = Array.from(document.querySelectorAll('.download-box'));
+    const itemsPerPage = 5; // 5 download boxes per page
+    let currentPage = 1;
 
+    // Show items for the current page
+    function showPage(page) {
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+
+      downloadBoxes.forEach((box, index) => {
+        box.style.display = (index >= start && index < end) ? "block" : "none";
+      });
+
+      currentPage = page;
+      renderPagination();
+    }
+
+    // Render pagination buttons
+    function renderPagination() {
+      const totalPages = Math.ceil(downloadBoxes.length / itemsPerPage);
+      const paginationContainer = document.getElementById('pagination');
+      paginationContainer.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.textContent = i;
+        pageBtn.style.background = (i === currentPage) ? "#2196F3" : "#555";
+        pageBtn.addEventListener('click', () => showPage(i));
+        paginationContainer.appendChild(pageBtn);
+      }
+    }
+
+    // Search functionality
     searchInput.addEventListener('keyup', () => {
       const query = searchInput.value.toLowerCase();
-
       downloadBoxes.forEach(box => {
         const title = box.querySelector('h2').textContent.toLowerCase();
         const desc = box.querySelector('p').textContent.toLowerCase();
-        if(title.includes(query) || desc.includes(query)){
-          box.classList.remove('hidden');
-        } else {
-          box.classList.add('hidden');
-        }
+        box.style.display = (title.includes(query) || desc.includes(query)) ? "block" : "none";
       });
     });
+
+    // Initial call to show first page
+    showPage(1);
   </script>
 </body>
 </html>
