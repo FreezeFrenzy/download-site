@@ -14,7 +14,7 @@ header {
   color: #fff;
   padding: 20px 20px 28px;
   font-size: 12px;
-  border: 1px solid #2a2a2a;
+  border: 2px solid #2a2a2a;
   position: relative;
   overflow: hidden;
 }
@@ -32,30 +32,51 @@ header .tagline {
   max-width: 600px;
   margin: 0 auto 20px;
   padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
 }
 
 .box{
-  padding: 20px;
+  padding: 24px;
+  margin-bottom: 20px;
   border-radius: 12px;
   background-color: #191919;
   color: #fff;
-  border: 1px solid #2a2a2a;
+  border: 2px solid #2a2a2a;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.box .meta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: #262626;
+  color: #ccc;
+  border: 2px solid #2a2a2a;
+}
+
+.box:hover {
+  border-color: #3a3a3a;
 }
 
 .box p {
   font-family: 'Inter';
-  padding-top: 12px;
-  padding-bottom: 12px;
+  font-size: 16px;
+  color: #ccc;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .box h2 {
-  padding-bottom: 12px;
+  padding-top: 12px;
   font-family: 'Press Start 2P';
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .box img {
@@ -63,6 +84,7 @@ header .tagline {
   height: auto;
   display: block;
   border-radius: 8px;
+  margin-top: 20px;
 }
 
 a.button {
@@ -72,6 +94,7 @@ a.button {
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
+  border: 2px solid #2a2a2a;
   font-size: 10px;
   font-family: 'Press Start 2P';
   transition: transform 0.1s, background 0.2s;
@@ -83,4 +106,31 @@ a.button {
 }
 .button:active {
   transform: translateY(0);
+}
+
+footer {
+  font-family: 'Inter';
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  background-color: #191919;
+  border: 2px solid #2a2a2a;
+  padding: 24px 20px;
+}
+
+.footer-links {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footer-links a {
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.footer-links a:hover {
+  color: #fff;
 }
