@@ -42,6 +42,7 @@ header .tagline {
   color: #fff;
   border: 2px solid #2a2a2a;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
 }
 
 .box .meta {
@@ -62,6 +63,7 @@ header .tagline {
 }
 
 .box:hover {
+  transform: scale(1.01);
   border-color: #3a3a3a;
 }
 
@@ -111,7 +113,7 @@ a.button {
 footer {
   font-family: 'Inter';
   font-size: 12px;
-  color: #fff;
+  color: #888;
   text-align: center;
   background-color: #191919;
   border: 2px solid #2a2a2a;
